@@ -33,4 +33,17 @@ satisficer_t <- satisficer %>%
 satisficer_t
 satisficer
 
+satisficer_t$chosa <- c("2014/03","2014/06","2014/09","2014/12",
+                        "2015/03","2015/06","2015/09","2015/12",
+                        "2016/03","2016/06","2016/09","2016/12",
+                        "2017/03","2017/06","2017/09")
+
+pdf(file="satisficer.pdf",paper='A4r')
+par(mfrow = c(2,1),oma = c(0,0,6,0))
+par(lwd = 2)
+plot(x = 1:15, y = satisficer_t$count, type = "l", xlab = "", ylab = "", main = "", xaxt = "n", cex.main = 2)
+axis(side=1, 1:15,labels=satisficer_t$chosa)
+mtext(text = "# of obs.",adj=0)
+dev.off()
+
 proc.time() - Hajime
