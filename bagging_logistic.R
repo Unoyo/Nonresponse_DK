@@ -22,8 +22,8 @@
   mydata_names <- names(mydata)
   f <- as.formula(paste("inf_exp~", paste(mydata_names[mydata_names != "inf_exp"], collapse = "+")))
   
-  div = 2
-  B = 10
+  div <- 2
+  B <- 10
   predictions <- foreach(m = 1:B, .combine = cbind) %do% {
       M <- sample(nrow(mydata_u), size = floor((nrow(mydata_u)/div)))
       glm_fit <- glm(formula = f, 
