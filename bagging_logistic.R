@@ -29,10 +29,9 @@
   mydata_train <- rbind(mydata_u_train, mydata_p)
   mydata_test <- rbind(mydata_u_test, mydata_p)
   
-  B = 1000
+  B = 100
   predictions <- foreach(m = 1:B, .combine = cbind) %do% {
-      training_positions <- sample(nrow(mydata_train), size = floor((nrow(mydata_train)/length_divisor)))
-      train_pos <- 1:nrow(mydata_train) %in% training_positions
+      train_pos <- sample(nrow(mydata_train), size = floor((nrow(mydata_train)/length_divisor)))
       glm_fit <- glm(formula = f, data = mydata_train[train_pos,], family = binomial)
       predict(glm_fit, newdata = mydata_test)
     }
