@@ -1,10 +1,30 @@
-var_C <- c("y","x1","x2","yymm")
-panel_data_C <- panel_data %>%  
+suppressMessages(library(foreach))
+suppressMessages(library(dplyr))
+ 
+Hajime <- proc.time()
+  
+mydata <- NULL
+N <- 10000
+  
+for(i in 1:13){
+  assign(paste("di",i,sep = ""),as.factor(sample(1:3, size = N, replace = TRUE)))
+  mydata <- cbind(mydata, get(paste("di",i,sep = "")))
+  mydata <- as.data.frame(mydata)
+  names(mydata)[i] <- paste("di",i,sep = "")
+}
+
+mydata$inf_exp <- sample(0:1, size = N, replace = TRUE, prob = c(2/5,3/5))
+mydata$ind <- as.factor(sample(1:100, size = N, replace = TRUE))
+
+var <- c("inf_exp","ind",
+         "di1","di2","di3","di4","di5","di6","di7",
+         "di8","di9","di10","di11","di12","di13")
+mydata <- mydata %>%  
   select(one_of(var_C)) %>%
-  filter(yymm == 1403) %>%
-  na.omit
-panel_names_C <- names(panel_data_C)
-f_4 <- as.formula(paste("y~", paste(panel_names_C[panel_names_C != "y" & 
-                                                  panel_names_C != "yymm"], collapse = "+")))
-match_gp1_C <- matchit(formula = f_4, data = panel_data_C, method = "exact")
+
+mydata_names <- names(mydata)
+colnames(mydata[1]) <- "treat"
+h <- as.formula(paste("treat~", paste(mydata[mydata != "inf_exp", collapse = "+")))
+
+match_res <- matchit(formula = h, data = mydata, method = "exact")
 
