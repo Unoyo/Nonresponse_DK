@@ -26,7 +26,7 @@ mydata <- mydata %>%
 
 mydata_names <- names(mydata)
 names(mydata)[1] <- "treat"
-h <- as.formula(paste("treat~", paste(mydata[mydata != "inf_exp"], collapse = "+")))
+h <- as.formula(paste("treat~", paste(mydata_names[mydata_names != "treat"], collapse = "+")))
 
 match_res <- matchit(formula = h, data = mydata, method = "exact")
 
