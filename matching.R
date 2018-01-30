@@ -1,5 +1,6 @@
 suppressMessages(library(foreach))
 suppressMessages(library(dplyr))
+suppressMessages(library(MatchIt))
  
 Hajime <- proc.time()
   
@@ -19,12 +20,13 @@ mydata$ind <- as.factor(sample(1:100, size = N, replace = TRUE))
 var <- c("inf_exp","ind",
          "di1","di2","di3","di4","di5","di6","di7",
          "di8","di9","di10","di11","di12","di13")
-mydata <- mydata %>%  
-  select(one_of(var_C)) %>%
+
+mydata <- mydata %>%
+  select(one_of(var))
 
 mydata_names <- names(mydata)
-colnames(mydata[1]) <- "treat"
-h <- as.formula(paste("treat~", paste(mydata[mydata != "inf_exp", collapse = "+")))
+names(mydata)[1] <- "treat"
+h <- as.formula(paste("treat~", paste(mydata[mydata != "inf_exp"], collapse = "+")))
 
 match_res <- matchit(formula = h, data = mydata, method = "exact")
 
