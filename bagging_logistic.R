@@ -25,7 +25,7 @@
   div <- 2
   B <- 10
   predictions <- foreach(m = 1:B, .combine = cbind) %do% {
-      M <- sample(nrow(mydata_u), size = floor((nrow(mydata_u)/div)), replace = TRUE)
+      M <- sample(nrow(mydata_u), size = floor((nrow(mydata_u)/div)))
       glm_fit <- glm(formula = f, 
                      data = rbind(mydata_p, mydata_u[M,]),
                      family = binomial)
