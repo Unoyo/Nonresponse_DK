@@ -24,9 +24,9 @@
   f <- as.formula(paste("inf_exp~", paste(mydata_names[mydata_names != "inf_exp"], collapse = "+")))
   
   div <- 2
-  B <- 1000
+  B <- 100
   registerDoParallel(detectCores())
-  predictions <- foreach(m = 1:B, .combine = cbind, .inorder = FALSE) %dopar% {
+  predictions <- foreach(j = 1:B, .combine = cbind, .inorder = FALSE) %dopar% {
       M <- sample(nrow(mydata_u), size = floor((nrow(mydata_u)/div)))
       glm_fit <- glm(formula = f, 
                      data = rbind(mydata_p, mydata_u[M,]),
