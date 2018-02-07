@@ -7,7 +7,9 @@
   mydata <- NULL
   N <- 10000
   
-  for(i in 1:13){
+  registerDoParallel(detectCores())
+
+  foreach(i = 1:13, inorder = FALSE) %do%{
     assign(paste("di",i,sep = ""),as.factor(sample(1:3, size = N, replace = TRUE)))
     mydata <- cbind(mydata, get(paste("di",i,sep = "")))
     mydata <- as.data.frame(mydata)
@@ -25,8 +27,8 @@
   
   div <- 2
   B <- 100
-  registerDoParallel(detectCores())
-  predictions <- foreach(j = 1:B, .combine = cbind, .inorder = FALSE) %dopar% {
+  
+  predictions <- foreach(j = 1 : B, .combine = cbind, .inorder = FALSE) %dopar% {
       M <- sample(nrow(mydata_u), size = floor((nrow(mydata_u)/div)))
       glm_fit <- glm(formula = f, 
                      data = rbind(mydata_p, mydata_u[M,]),
