@@ -9,7 +9,7 @@
   
   registerDoParallel(detectCores())
 
-  foreach(i = 1:13, inorder = FALSE) %do%{
+  foreach(i = 1:13, .inorder = FALSE) %do%{
     assign(paste("di",i,sep = ""),as.factor(sample(1:3, size = N, replace = TRUE)))
     mydata <- cbind(mydata, get(paste("di",i,sep = "")))
     mydata <- as.data.frame(mydata)
