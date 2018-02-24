@@ -18,6 +18,9 @@ mydata$ind <- as.factor(sample(1:100, size = N, replace = TRUE))
 
 mydata_p <- mydata %>%
   filter(inf_exp == 1)
+mydata_u <- mydata %>%
+  filter(inf_exp == 0)
 
 occ_svm <- ksvm(x = inf_exp~., data = mydata_p, type = "one-svc", kernel = "vanilladot")
-occ_svm
+u_n <- predict(occ_svm, mydata_u)
+u_n
