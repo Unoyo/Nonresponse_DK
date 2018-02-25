@@ -21,6 +21,7 @@ mydata_p <- mydata %>%
 mydata_u <- mydata %>%
   filter(inf_exp == 0)
 
-occ_svm <- ksvm(x = inf_exp~., data = mydata_p, type = "one-svc", kernel = "vanilladot")
+occ_svm <- ksvm(x = inf_exp~., data = mydata_p, type = "one-svc", kernel = "rbfdot",
+                kpar = list(sigma = 0.1), nu = 0.01)
 u_n <- predict(occ_svm, mydata_u)
-u_n
+length(u_n)
