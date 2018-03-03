@@ -2,6 +2,7 @@ suppressMessages(library(kernlab))
 suppressMessages(library(KernSmooth))
 suppressMessages(library(foreach))
 suppressMessages(library(dplyr))
+suppressMessages(library(doParallel))
 
 mydata <- NULL
 N <- 10000
