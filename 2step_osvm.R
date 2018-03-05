@@ -37,8 +37,27 @@ mydata_u <- mydata %>%
 nu <- sum(mydata$outlier)/length(mydata$outlier)
 occ_svm <- ksvm(x = inf_exp1~., data = mydata_p, type = "one-svc", kernel = "rbfdot",
                 kpar = list(sigma = 0.1), nu = nu)
-rn  <- predict(occ_svm, newdata = mydata_u)
+occ_pred  <- predict(occ_svm, newdata = mydata_u)
 
 ## step2 ##
+mydata_u_2 <- mydata_u %>%
+  mutate(occ_pred) %>%
+  filter(occ_pred == 1) %>%
+  select(-occ_pred)
+mydata_u_3 <- mydata_u %>%
+  mutate(occ_pred) %>%
+  filter(occ_pred == 0) %>%
+  select(-occ_pred)
+
+glm_fit <- glm(formula = g,
+               data = rbind(mydata_p, mydata_u_2),
+               family = binomial)
+pred <- predict(glm_fit,
+                newdata = mydata_u_3,
+                type = "response")
+new_RN  <- pred[pred < 0.5]
+length(new_RN)
+
+
 
 
