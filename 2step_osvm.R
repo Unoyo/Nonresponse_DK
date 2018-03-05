@@ -43,11 +43,11 @@ sum(occ_pred)
 ## step2 ##
 mydata_u_2 <- mydata_u %>%
   mutate(occ_pred) %>%
-  filter(occ_pred == 1) %>%
+  filter(occ_pred == 0) %>%
   select(-occ_pred)
 mydata_u_3 <- mydata_u %>%
   mutate(occ_pred) %>%
-  filter(occ_pred == 0) %>%
+  filter(occ_pred == 1) %>%
   select(-occ_pred)
 
 glm_fit <- glm(formula = inf_exp1~., data = rbind(mydata_p, mydata_u_2), family = binomial)
