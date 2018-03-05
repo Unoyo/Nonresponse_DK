@@ -34,7 +34,7 @@ mydata_u <- mydata %>%
   filter(inf_exp1 == 0) %>%
   select(-outlier)
 
-nu <- 0.01#sum(mydata$outlier)/length(mydata$outlier)
+nu <- 0.5#sum(mydata$outlier)/length(mydata$outlier)
 occ_svm <- ksvm(x = inf_exp1~., data = mydata_p, type = "one-svc", kernel = "rbfdot",
                 kpar = "automatic", C = 1/nu*N, nu = nu)
 occ_pred  <- as.numeric(predict(occ_svm, newdata = mydata_u))
@@ -54,3 +54,4 @@ glm_fit <- glm(formula = inf_exp1~., data = rbind(mydata_p, mydata_u_2), family 
 pred <- predict(glm_fit, newdata = mydata_u_3, type = "response")
 new_RN <- pred[pred < 0.5]
 length(new_RN)
+
