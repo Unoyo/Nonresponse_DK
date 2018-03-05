@@ -49,12 +49,8 @@ mydata_u_3 <- mydata_u %>%
   filter(occ_pred == 0) %>%
   select(-occ_pred)
 
-glm_fit <- glm(formula = g,
-               data = rbind(mydata_p, mydata_u_2),
-               family = binomial)
-pred <- predict(glm_fit,
-                newdata = mydata_u_3,
-                type = "response")
+glm_fit <- glm(formula = inf_exp1~., data = rbind(mydata_p, mydata_u_2), family = binomial)
+pred <- predict(glm_fit, newdata = mydata_u_3, type = "response")
 new_RN  <- pred[pred < 0.5]
 length(new_RN)
 
