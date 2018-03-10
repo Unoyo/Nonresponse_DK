@@ -15,7 +15,7 @@ chosa <- c("14/03","14/06","14/09","14/12",
 pdf(file = "fig_6.pdf", paper='A4', family = "Japan1GothicBBB")
 par(mfrow = c(2,3))
 plot(x = c(1:15), y = as.numeric(as.character(act_value$gp1)), type = "l", lwd = 3, col = "green",
-     axes = FALSE, xlab = "", ylab = "", ylim = c(0,3), main = "物価全般")
+     axes = FALSE, xlab = "", ylab = "", ylim = c(0,3), main = "物価全般1年後", cex.main = 2)
 par(new = TRUE)
 plot(x = c(1:15), y = as.numeric(as.character(act_value$gp1))+0.1, type = "l", lwd = 2, col = "red",
      axes = FALSE, xlab = "", ylab = "", ylim = c(0,3))
@@ -49,7 +49,7 @@ legend("topright", legend = c("公表集計値", "推計値", "95%信頼区間")
 
 
 plot(x = c(1:15), y = as.numeric(as.character(act_value$op1)), type = "l", lwd = 3, col = "green",
-     axes = FALSE, xlab = "", ylab = "", ylim = c(-2,4), main = "op1")
+     axes = FALSE, xlab = "", ylab = "", ylim = c(-2,4), main = "自社の販売価格1年後", cex.main = 1.7)
 par(new = TRUE)
 plot(x = c(1:15), y = as.numeric(as.character(act_value$op1))+0.15, type = "l", lwd = 2, col = "red",
      axes = FALSE, xlab = "", ylab = "", ylim = c(-2,4))
