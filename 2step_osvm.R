@@ -38,7 +38,7 @@ nu <- 0.01#sum(mydata$outlier)/length(mydata$outlier)
 occ_svm <- ksvm(x = inf_exp1~., data = mydata_p, type = "one-svc", kernel = "rbfdot",
                 kpar = "automatic", C = 1/nu*N, nu = nu)
 occ_pred  <- as.numeric(predict(occ_svm, newdata = mydata_u))
-sum(occ_pred)
+length(occ_pred)
 
 ## step2 ##
 mydata_u_2 <- mydata_u %>%
