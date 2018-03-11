@@ -12,7 +12,8 @@ chosa <- c("14/03","14/06","14/09","14/12",
            "16/03","16/06","16/09","16/12",
            "17/03","17/06","17/09")
 
-pdf(file = "fig_6.pdf", paper='A4', family = "Japan1GothicBBB")
+names(pdfFonts())
+pdf(file = "fig_6.pdf", paper='A4', family = "Japan1")
 par(mfrow = c(2,3))
 plot(x = c(1:15), y = as.numeric(as.character(act_value$gp1)), type = "l", lwd = 3, col = "green",
      axes = FALSE, xlab = "", ylab = "", ylim = c(0,3), main = "あいうえお", cex.main = 2)
