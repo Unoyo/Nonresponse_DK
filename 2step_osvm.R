@@ -59,9 +59,9 @@ repeat{
       select(-new_positive)
     
     sample(nrow(mydata_p), size = L)
-    glm_fit <- glm(formula = inf_exp1~., 
-                   data = rbind(mydata_p[L,], mydata_u_temp_N), 
-                   family = binomial)
+    lm_fit <- lm(formula = inf_exp1~., 
+                 data = rbind(mydata_p[L,], mydata_u_temp_N), 
+                 family = binomial)
     pred <- predict(glm_fit, newdata = mydata_u_temp_U, type = "response")
     new_positive <- pred >= 0.5
     new_positive <- as.data.frame(new_positive)
