@@ -16,7 +16,7 @@ names(pdfFonts())
 pdf(file = "fig_6.pdf", paper='A4', family = "Japan1")
 par(mfrow = c(2,3))
 plot(x = c(1:15), y = as.numeric(as.character(act_value$gp1)), type = "l", lwd = 3, col = "green",
-     axes = FALSE, xlab = "", ylab = "", ylim = c(0,3), main = "あいうえお", cex.main = 2)
+     axes = FALSE, xlab = "", ylab = "", ylim = c(0,3), main = "あい�?えお", cex.main = 2)
 par(new = TRUE)
 plot(x = c(1:15), y = as.numeric(as.character(act_value$gp1))+0.1, type = "l", lwd = 2, col = "red",
      axes = FALSE, xlab = "", ylab = "", ylim = c(0,3))
@@ -41,7 +41,7 @@ plot(x = c(1:15), y = as.numeric(as.character(act_value$gp5))-0.15, type = "l", 
 mtext(text = "%",adj = 0)
 axis(side = 1, at = 1:15, labels = chosa, cex.axis = 1.4)
 axis(side = 2, at = 0:3, labels = c(0,1,2,3), las = 1, cex.axis = 1.5)
-legend("topright", legend = c("公表集計値", "推定値", "95%信頼区間"), 
+legend("topright", legend = c("公表�?計値", "推定値", "95%信頼区�?"), 
        lwd = c(3,2,1),
        lty = c("solid","solid","dashed"),
        col = c("green","red","black"),
@@ -50,7 +50,7 @@ legend("topright", legend = c("公表集計値", "推定値", "95%信頼区間")
 
 
 plot(x = c(1:15), y = as.numeric(as.character(act_value$op1)), type = "l", lwd = 3, col = "green",
-     axes = FALSE, xlab = "", ylab = "", ylim = c(-2,4), main = "あいうえお", cex.main = 1.7)
+     axes = FALSE, xlab = "", ylab = "", ylim = c(-2,4), main = "あい�?えお", cex.main = 1.7)
 par(new = TRUE)
 plot(x = c(1:15), y = as.numeric(as.character(act_value$op1))+0.15, type = "l", lwd = 2, col = "red",
      axes = FALSE, xlab = "", ylab = "", ylim = c(-2,4))
