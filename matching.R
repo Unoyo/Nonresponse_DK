@@ -24,8 +24,8 @@ var <- c("inf_exp","ind",
 mydata <- mydata %>%
   select(one_of(var))
 
-mydata_names <- names(mydata)
-names(mydata)[1] <- "treat"
+mydata_names <- colnames(mydata)
+colnames(mydata)[1] <- "treat"
 h <- as.formula(paste("treat~", paste(mydata_names[mydata_names != "treat"], collapse = "+")))
 
 match_res <- matchit(formula = h, data = mydata, method = "exact")
