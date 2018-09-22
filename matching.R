@@ -28,5 +28,5 @@ mydata_names <- colnames(mydata)
 colnames(mydata)[1] <- "treat"
 h <- as.formula(paste("treat~", paste(mydata_names[mydata_names != "treat"], collapse = "+")))
 
-match_res <- matchit(formula = h, data = mydata, method = "exact")
+match_res <- matchit(formula = h, data = mydata, method = "nearest")
 
